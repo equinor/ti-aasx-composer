@@ -11,5 +11,7 @@ namespace S.Servies.CacheService
         public void AddAssetAdministrationshell(string TicketId, AssetAdministrationShell aas);
         public void AddFile(string TicketId, string PayloadType, IFormFile file);
 
+        public List<IFormFile> GetFilesByTicketId(string ticketId);
+
     }
 }

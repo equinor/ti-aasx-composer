@@ -8,7 +8,7 @@ namespace S.Servies.CacheService
     class CacheService : ICacheService
     {
         public Dictionary<string, AssetAdministrationShell> AasDictionary = new();
-        public Dictionary<string, IFormFile> Files = new(); 
+        public Dictionary<string, Dictionary<string, IFormFile>> Files = new(); 
 
         public AssetAdministrationShell GetAASByTickedId(string tickedId)
         {
@@ -26,11 +26,18 @@ namespace S.Servies.CacheService
                 throw new Exception("Server Error. An AAS with this Ticket ID already exists."); 
             }
             AasDictionary[TicketId] = aas;
+            Files[TicketId] = new Dictionary<string, IFormFile>();
         }
 
         public void AddFile(string TicketId, string payloadType, IFormFile file)
         {
-            Files[TicketId] = file;
+
+            if (Files[TicketId].ContainsKey(file.FileName))
+            {
+                throw new Exception("Error: Duplicate files with same name");
+            }
+            Files[TicketId].Add(file.FileName, file);
+
             var aas = GetAASByTickedId(TicketId);
             var payloadsSubmodel = aas.Submodels["Payloads"];
 
@@ -58,6 +65,9 @@ namespace S.Servies.CacheService
             UpdateAASByTicketId(TicketId, aas);
         }
 
-
+        public List<IFormFile> GetFilesByTicketId(string ticketId)
+        {
+            return new List<IFormFile>(Files[ticketId].Values);
+        }
     }
 }

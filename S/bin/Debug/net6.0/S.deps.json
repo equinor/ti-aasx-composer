@@ -20,7 +20,8 @@
       "BaSyx.Models/1.0.0": {
         "dependencies": {
           "BaSyx.Utils": "1.0.0",
-          "BaSyx.Utils.DependencyInjection.Abstractions": "1.0.0"
+          "BaSyx.Utils.DependencyInjection.Abstractions": "1.0.0",
+          "Microsoft.XmlSerializer.Generator": "1.0.0"
         },
         "runtime": {
           "lib/netstandard2.0/BaSyx.Models.dll": {
@@ -449,28 +450,28 @@
     "BaSyx.Models/1.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-n3suxqdjiB4Sqd3aaOucwJuhD3n9s5gKHdAsyMNL0K2iJm9ie1LyuKaMtYA16yjbXHVLeTlvuXoVRPfgYDFWiw==",
+      "sha512": "sha512-//8ns6stkMmQesqEzgNOtPh1ANmdR+/4v2kARnC4Rl5xCH6bWDAMfC+EQItMKUk5CH7pTJUNypPqAOXUeY7biw==",
       "path": "basyx.models/1.0.0",
       "hashPath": "basyx.models.1.0.0.nupkg.sha512"
     },
     "BaSyx.Models.Export/1.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-v/Ra0OFOMENQLUXIIxpp6vihWlquUULMfs364HWWrwsAVEhHNfYBX3f2JwavxHwHCByZgC2spt91kHFWnVvgFw==",
+      "sha512": "sha512-e+yrmYk99mfaDBcDzqskqA8CzJ89aJoVKKjxN2kz9osEBpuR1J3NqwjiK/8frNo/VTpxM+nJJfg4IeO2xzZXuQ==",
       "path": "basyx.models.export/1.0.0",
       "hashPath": "basyx.models.export.1.0.0.nupkg.sha512"
     },
     "BaSyx.Utils/1.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-KEH049qyelXtt/Pkd4UnHeXc1QmbovrgTRCUeo4Zd0JeH9j0/tI0ofvURTn3pQ8PrVYi78lfYhzEKaz0cFpVrw==",
+      "sha512": "sha512-7ntpBvmsior5dLaBU2rJgJPqsuNw2yjbRV6wfttscbpmvIC6YVenSOior9vEq0otHBQCTnXe6rjLEpitRf09nQ==",
       "path": "basyx.utils/1.0.0",
       "hashPath": "basyx.utils.1.0.0.nupkg.sha512"
     },
     "BaSyx.Utils.DependencyInjection.Abstractions/1.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-qCmuMX2ga1eZBU2l1v+PAp2AwWx1a0SmNm7NtoY817imb3FAzj/oEPgZH9C70fdjFNxsj7jQ6Gsog8kk5Uv7pA==",
+      "sha512": "sha512-H8w0pyvahqu4AywmBUUS+lWzDGxKmKxR8E9wWZq5OusY4sN9AOVmzA08lAbRtR6thrMB9qxjhsxxyCkFPeKPSw==",
       "path": "basyx.utils.dependencyinjection.abstractions/1.0.0",
       "hashPath": "basyx.utils.dependencyinjection.abstractions.1.0.0.nupkg.sha512"
     },
@@ -827,7 +828,7 @@
     "System.Xml.XmlSerializer/4.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-MYoTCP7EZ98RrANESW05J5ZwskKDoN0AuZ06ZflnowE50LTpbR5yRg3tHckTVm5j/m47stuGgCrCHWePyHS70Q==",
+      "sha512": "sha512-VShQJhOxgD/5M2Z1IWm1vMaSqlbjo1zdFf8H7Ahte6bTvSUhUko/gDpAVVhGgGgTDeue4QyNg1fu1Zz2GKSEuQ==",
       "path": "system.xml.xmlserializer/4.3.0",
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
     },
