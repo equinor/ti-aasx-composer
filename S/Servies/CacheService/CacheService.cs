@@ -1,6 +1,7 @@
 ﻿using BaSyx.Models.Core.AssetAdministrationShell.Identification;
 using BaSyx.Models.Core.AssetAdministrationShell.Implementations;
 using BaSyx.Models.Core.Common;
+using Newtonsoft.Json;
 using System.Text.RegularExpressions;
 
 namespace S.Servies.CacheService
@@ -8,7 +9,7 @@ namespace S.Servies.CacheService
     class CacheService : ICacheService
     {
         public Dictionary<string, AssetAdministrationShell> AasDictionary = new();
-        public Dictionary<string, Dictionary<string, IFormFile>> Files = new(); 
+        public Dictionary<string, Dictionary<string, Payload>> Files = new(); 
 
         public AssetAdministrationShell GetAASByTickedId(string tickedId)
         {
@@ -26,7 +27,7 @@ namespace S.Servies.CacheService
                 throw new Exception("Server Error. An AAS with this Ticket ID already exists."); 
             }
             AasDictionary[TicketId] = aas;
-            Files[TicketId] = new Dictionary<string, IFormFile>();
+            Files[TicketId] = new Dictionary<string, Payload>();
         }
 
         public void AddFile(string TicketId, string payloadType, IFormFile file)
@@ -36,7 +37,14 @@ namespace S.Servies.CacheService
             {
                 throw new Exception("Error: Duplicate files with same name");
             }
-            Files[TicketId].Add(file.FileName, file);
+
+            if (file.Length <= 0)
+            {
+                throw new Exception("Error: File size is zero");
+            }
+            
+            Files[TicketId].Add(file.FileName, new Payload(file));
+            
 
             var aas = GetAASByTickedId(TicketId);
             var payloadsSubmodel = aas.Submodels["Payloads"];
@@ -65,9 +73,9 @@ namespace S.Servies.CacheService
             UpdateAASByTicketId(TicketId, aas);
         }
 
-        public List<IFormFile> GetFilesByTicketId(string ticketId)
+        public List<Payload> GetFilesByTicketId(string ticketId)
         {
-            return new List<IFormFile>(Files[ticketId].Values);
+            return new List<Payload>(Files[ticketId].Values);
         }
     }
 }

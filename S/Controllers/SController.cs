@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting.Internal;
 using System.IO;
 using System;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
+using Newtonsoft.Json;
 
 namespace S.Controllers
 {
@@ -91,19 +92,17 @@ namespace S.Controllers
 
             var files = cacheService.GetFilesByTicketId(ticketId);
 
-            string aasxFilePath = aasxFileName;
             IFileProvider fileProvider = hostingEnvironment.ContentRootFileProvider;
 
-            using (AASX aasx = new AASX(aasxFilePath))
+            using (AASX aasx = new AASX(aasxFileName))
             {
                 AssetAdministrationShellEnvironment_V2_0 env = new AssetAdministrationShellEnvironment_V2_0(aas);
                 aasx.AddEnvironment(aas.Identification, env, ExportType.Xml);
 
-                foreach (IFormFile file in files) {
+                foreach (var file in files) {
 
                     //Had to copy stream to MemoryStream to get read/write access
-                    var fileStream = new MemoryStream();
-                    file.CopyTo(fileStream);
+                    var fileStream = new MemoryStream(file.PayloadData);
                     aasx.AddStreamToAASX($"/aasx/{file.FileName}", fileStream, file.ContentType);
 
                 }
