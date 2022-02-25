@@ -1,0 +1,115 @@
+{
+	"info": {
+		"_postman_id": "90940753-f879-47fd-8ff4-44f142a772db",
+		"name": "S",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CreatePackage",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"PlantProjectCode\": \"<plant-project-code>\",\r\n    \"ProjectNo\": \"<project-no>\",\r\n    \"ContractorCode\": \"<contractor-code>\",\r\n    \"PlantCode\": \"<plant-code>\",\r\n    \"MetaSubmodelId\": \"<meta-submodel-id (IRI)>\",\r\n    \"AasId\": \"<aas-ID (IRI)>\",\r\n    \"AssetId\": \"<asset-ID (IRI)>\",\r\n    \"PayloadsSubmodelId\": \"<payloads-submodel-id (IRI)>\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/createPackage",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"createPackage"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddFile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "PayloadType",
+							"value": "IMF",
+							"type": "text"
+						},
+						{
+							"key": "File",
+							"type": "file",
+							"src": "/C:/Users/petter.minne/OneDrive - Bouvet Norge AS/Pictures/5g32yb6q3o271.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/{{ticketId}}/file",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{ticketId}}",
+						"file"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get AASx",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/{{ticketId}}/aasx",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{ticketId}}",
+						"aasx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Close Ticket",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/{{ticketId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{ticketId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
