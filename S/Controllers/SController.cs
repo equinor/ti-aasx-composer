@@ -1,17 +1,11 @@
-using Microsoft.AspNetCore.Mvc;
-using BaSyx.Models.Core;
-using S.Servies.CacheService;
-using BaSyx.Models.Core.AssetAdministrationShell.Implementations;
-using BaSyx.Models.Core.AssetAdministrationShell.Identification;
-using BaSyx.Models.Core.Common;
 using BaSyx.Models.Core.AssetAdministrationShell.Generics;
+using BaSyx.Models.Core.AssetAdministrationShell.Identification;
+using BaSyx.Models.Core.AssetAdministrationShell.Implementations;
+using BaSyx.Models.Core.Common;
 using BaSyx.Models.Export;
-using Microsoft.Extensions.FileProviders;
-using Microsoft.Extensions.Hosting.Internal;
-using System.IO;
-using System;
-using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
-using Newtonsoft.Json;
+using Microsoft.AspNetCore.Mvc;
+using S.Servies.CacheService;
+using System.IO.Packaging;
 
 namespace S.Controllers
 {
@@ -20,13 +14,10 @@ namespace S.Controllers
     public class SController : ControllerBase
     {
         private readonly ICacheService cacheService;
-        private readonly IHostingEnvironment hostingEnvironment;
 
-
-        public SController(ICacheService cacheService, IHostingEnvironment environment)
+        public SController(ICacheService cacheService)
         {
             this.cacheService = cacheService;
-            hostingEnvironment = environment;
         }
         #region Hackathon
         [HttpPost("/createPackage")]
@@ -92,40 +83,38 @@ namespace S.Controllers
 
             var files = cacheService.GetFilesByTicketId(ticketId);
 
-            IFileProvider fileProvider = hostingEnvironment.ContentRootFileProvider;
-
-            using (AASX aasx = new AASX(aasxFileName))
+            using (var packageStream = new MemoryStream())
             {
-                AssetAdministrationShellEnvironment_V2_0 env = new AssetAdministrationShellEnvironment_V2_0(aas);
-                aasx.AddEnvironment(aas.Identification, env, ExportType.Xml);
+                using var package = Package.Open(packageStream, FileMode.Create, FileAccess.ReadWrite);
 
-                foreach (var file in files) {
+                using (AASX aasx = new AASX(package))
+                {
+                    AssetAdministrationShellEnvironment_V2_0 env = new AssetAdministrationShellEnvironment_V2_0(aas);
+                    aasx.AddEnvironment(aas.Identification, env, ExportType.Xml);
 
-                    //Had to copy stream to MemoryStream to get read/write access
-                    var fileStream = new MemoryStream(file.PayloadData);
-                    aasx.AddStreamToAASX($"/aasx/{file.FileName}", fileStream, file.ContentType);
+                    foreach (var file in files)
+                    {
 
+                        //Had to copy stream to MemoryStream to get read/write access
+                        var fileStream = new MemoryStream(file.PayloadData);
+                        aasx.AddStreamToAASX($"/aasx/{file.FileName}", fileStream, file.ContentType);
+
+                    }
                 }
+
+                packageStream.Position = 0;
+
+                return File(packageStream.ToArray(), "application/asset-administration-shell-package", aasxFileName);
             }
 
-            var fileInfo = fileProvider.GetFileInfo(aasxFileName);
-            var fileResult = new PhysicalFileResult(fileInfo.PhysicalPath, "application/asset-administration-shell-package")
-            {
-                FileDownloadName = aasxFileName
-            };
-            return fileResult;
-
-            return Ok();
         }
 
         [HttpDelete("/{ticketId}")]
         public IActionResult DeleteTicket(string ticketId)
         {
+
             return Ok();
         }
-
-
-
         #endregion
     }
 }

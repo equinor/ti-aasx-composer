@@ -1,7 +1,6 @@
 ﻿using BaSyx.Models.Core.AssetAdministrationShell.Identification;
 using BaSyx.Models.Core.AssetAdministrationShell.Implementations;
 using BaSyx.Models.Core.Common;
-using Newtonsoft.Json;
 using System.Text.RegularExpressions;
 
 namespace S.Servies.CacheService
