@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xd2g0SQKU+pXSUmWs3qFfJdttOzCjbPOcisfQzS9ppW+m/hUIrPmAFo7iz5XyKZWjvcLEoqLVEOnpVpWM/DlcQ==",
+  "dgSpecHash": "sp1YbxJLSmUP616o31uSSc5ic5OI5lv1r1EnAKA7KSi0QXVc+P5g2SP8/hMWE+zSeYLzY7LDiN+kJ1JN4E5R8w==",
   "success": true,
-  "projectFilePath": "C:\\projects\\EQ\\baSyx\\Spine-basyx\\Hackaton\\ti-aibel-hackathon\\S\\S.csproj",
+  "projectFilePath": "C:\\projects\\EQ\\baSyx\\Spine-basyx\\Hackaton\\ti-aibel-hackathon\\S\\AASc.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\petter.minne\\.nuget\\packages\\basyx.models\\1.0.0\\basyx.models.1.0.0.nupkg.sha512",
     "C:\\Users\\petter.minne\\.nuget\\packages\\basyx.models.export\\1.0.0\\basyx.models.export.1.0.0.nupkg.sha512",

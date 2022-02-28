@@ -3,7 +3,7 @@ using BaSyx.Models.Core.AssetAdministrationShell.Implementations;
 using BaSyx.Models.Core.Common;
 using System.Text.RegularExpressions;
 
-namespace S.Servies.CacheService
+namespace AASc.Servies.CacheService
 {
     class CacheService : ICacheService
     {
@@ -44,7 +44,6 @@ namespace S.Servies.CacheService
             
             Files[TicketId].Add(file.FileName, new Payload(file));
             
-
             var aas = GetAASByTickedId(TicketId);
             var payloadsSubmodel = aas.Submodels["Payloads"];
 
@@ -75,6 +74,20 @@ namespace S.Servies.CacheService
         public List<Payload> GetFilesByTicketId(string ticketId)
         {
             return new List<Payload>(Files[ticketId].Values);
+        }
+
+        public bool DeleteTicket(string TicketId)
+        {
+            try
+            {
+                Files.Remove(TicketId);
+                AasDictionary.Remove(TicketId);
+                return true;
+            }
+            catch 
+            {
+                return false;
+            }
         }
     }
 }

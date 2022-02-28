@@ -4,18 +4,19 @@ using BaSyx.Models.Core.AssetAdministrationShell.Implementations;
 using BaSyx.Models.Core.Common;
 using BaSyx.Models.Export;
 using Microsoft.AspNetCore.Mvc;
-using S.Servies.CacheService;
+using AASc.Servies.CacheService;
 using System.IO.Packaging;
+using System.Timers;
 
-namespace S.Controllers
+namespace AASc.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class SController : ControllerBase
+    public class AAScController : ControllerBase
     {
         private readonly ICacheService cacheService;
 
-        public SController(ICacheService cacheService)
+        public AAScController(ICacheService cacheService)
         {
             this.cacheService = cacheService;
         }
@@ -72,8 +73,7 @@ namespace S.Controllers
             )
         {
             cacheService.AddFile(ticketId, PayloadType, File);
-            
-            return Ok();
+            return Ok("File has been successfully uploaded");
         }
         [HttpGet("/{ticketId}/aasx")]
         public IActionResult GetAasx(string ticketId)
@@ -112,8 +112,10 @@ namespace S.Controllers
         [HttpDelete("/{ticketId}")]
         public IActionResult DeleteTicket(string ticketId)
         {
-
-            return Ok();
+            var ok = cacheService.DeleteTicket(ticketId);
+            if(ok)
+                return Ok($"Ticket {ticketId} successfully removed");
+            return BadRequest("Error: deleting ticket has failed.");
         }
         #endregion
     }

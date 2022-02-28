@@ -3058,9 +3058,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\projects\\EQ\\baSyx\\Spine-basyx\\Hackaton\\ti-aibel-hackathon\\S\\S.csproj",
-      "projectName": "S",
-      "projectPath": "C:\\projects\\EQ\\baSyx\\Spine-basyx\\Hackaton\\ti-aibel-hackathon\\S\\S.csproj",
+      "projectUniqueName": "C:\\projects\\EQ\\baSyx\\Spine-basyx\\Hackaton\\ti-aibel-hackathon\\S\\AASc.csproj",
+      "projectName": "AASc",
+      "projectPath": "C:\\projects\\EQ\\baSyx\\Spine-basyx\\Hackaton\\ti-aibel-hackathon\\S\\AASc.csproj",
       "packagesPath": "C:\\Users\\petter.minne\\.nuget\\packages\\",
       "outputPath": "C:\\projects\\EQ\\baSyx\\Spine-basyx\\Hackaton\\ti-aibel-hackathon\\S\\obj\\",
       "projectStyle": "PackageReference",

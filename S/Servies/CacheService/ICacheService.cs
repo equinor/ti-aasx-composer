@@ -1,6 +1,6 @@
 ﻿using BaSyx.Models.Core.AssetAdministrationShell.Implementations;
 
-namespace S.Servies.CacheService
+namespace AASc.Servies.CacheService
 {
     public interface ICacheService
     {
@@ -11,6 +11,7 @@ namespace S.Servies.CacheService
         public void AddAssetAdministrationshell(string TicketId, AssetAdministrationShell aas);
         public void AddFile(string TicketId, string PayloadType, IFormFile file);
         public List<Payload> GetFilesByTicketId(string ticketId);
+        public bool DeleteTicket(string TicketId);
 
     }
 }

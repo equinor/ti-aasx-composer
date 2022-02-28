@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace S
+namespace AASc
 {
     public class CreatePackageS
     {
