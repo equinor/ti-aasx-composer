@@ -35,10 +35,10 @@ namespace AASc.Controllers
 
              var properties = new Dictionary<string, (string, string)>()
             {
-                { "PlantProjectCode", (packageS.PlantProjectCode, "https://ns.imfic.org/aas/PlantProjectCode") },
-                { "ProjectNo", (packageS.ProjectNo, "https://ns.imfic.org/aas/ProjectNo") },
-                { "ContractorCode", (packageS.ContractorCode, "https://ns.imfic.org/aas/ContractorCode") },
-                { "PlantCode", (packageS.PlantCode, "https://ns.imfic.org/aas/PlantCode") }
+                { "PlantProjectCode", (packageS.PlantProjectCode, "https://ns.imfid.org/aas/PlantProjectCode") },
+                { "ProjectNo", (packageS.ProjectNo, "https://ns.imfid.org/aas/ProjectNo") },
+                { "ContractorCode", (packageS.ContractorCode, "https://ns.imfid.org/aas/ContractorCode") },
+                { "PlantCode", (packageS.PlantCode, "https://ns.imfid.org/aas/PlantCode") }
             };
             var stringDataType = new DataType(DataObjectType.String);
 
